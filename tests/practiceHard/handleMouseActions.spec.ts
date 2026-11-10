@@ -33,7 +33,7 @@ test('mouse double click', async ({page})=>{
 })
 
 
-test.only('Drag and drop Demo', async ({page})=>{
+test('Drag and drop Demo', async ({page})=>{
 
     await page.goto('https://jqueryui.com/droppable/');
     const frame_1 =await page.frameLocator("//iframe[@class='demo-frame']")

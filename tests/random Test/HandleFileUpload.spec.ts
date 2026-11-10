@@ -15,7 +15,7 @@ test('Multiple file upload with Tagname Input', async ({page})=>{
 
 })
 
-test.only('upload file with Event Listener', async ({page})=>{
+test('upload file with Event Listener', async ({page})=>{
 
 
     await page.goto('https://leafground.com/file.xhtml');

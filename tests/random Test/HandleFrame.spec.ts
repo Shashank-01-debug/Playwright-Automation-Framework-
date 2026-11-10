@@ -39,13 +39,13 @@ test('Handle Nested Frame', async ({page})=>{
 
 })
 
-test.only('handle frame using frameLocator Method', async ({page})=>{
+test('handle frame using frameLocator Method', async ({page})=>{
 
     await page.goto('https://leafground.com/frame.xhtml;')
     await page.frameLocator("(//iframe)[1]").locator("//button[@id='Click']").click();
 })
 
-test.only('handle Nested frame using frameLocator Method', async ({page})=>{
+test('handle Nested frame using frameLocator Method', async ({page})=>{
 
     await page.goto('https://leafground.com/frame.xhtml;')
     await page.frameLocator("(//iframe)[3]").

@@ -12,7 +12,7 @@ console.log('After Assertion');
 
 })
 
-test.only('Non retry Assertions', async ({page})=>{
+test('Non retry Assertions', async ({page})=>{
     await page.goto('https://www.leafground.com/input.xhtml')
     const title = await page.title();
     console.log(title);

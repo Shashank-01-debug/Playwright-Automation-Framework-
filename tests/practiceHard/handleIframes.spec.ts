@@ -18,7 +18,7 @@ test('practice frames', async ({page})=>{
 
 })
 
-test.only('handle frames using URL', async ({page})=>{
+test('handle frames using URL', async ({page})=>{
     await page.goto('https://docs.oracle.com/javase/8/docs/api/');
    const thirdFrame=await page.frame({url:"https://docs.oracle.com/javase/8/docs/api/overview-summary.html"});
    thirdFrame?.locator("//a[text()='Description']").click();
@@ -27,7 +27,7 @@ test.only('handle frames using URL', async ({page})=>{
 
 
 
-test.only('handle framesssssss', async ({page})=>{
+test('handle framesssssss', async ({page})=>{
     
     await page.goto('https://the-internet.herokuapp.com/nested_frames');
     const title = await page.frameLocator("//frame[@name='frame-top']").frameLocator("//frame[@name='frame-right']").locator("//body").innerText();

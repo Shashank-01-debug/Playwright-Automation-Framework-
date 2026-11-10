@@ -9,7 +9,7 @@ test.skip('Test Method', async ({page})=>{
 })
 
 
-test.only('Test using only annotation', async ({page})=>{
+test('Test using only annotation', async ({page})=>{
 
     test.info().annotations.push({type:'author',description:'Shashank'},
         {type:'smoke Testing',description:'login Functionality'})

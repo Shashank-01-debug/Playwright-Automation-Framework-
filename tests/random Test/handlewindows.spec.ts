@@ -33,7 +33,7 @@ await page.locator("//span[text()='Fresh']").click();
 
 })
 
-test.only('practice handleWindows', async ({page,context})=>{
+test('practice handleWindows', async ({page,context})=>{
 
 await page.goto('https://www.leafground.com/window.xhtml;');
 //!create promise

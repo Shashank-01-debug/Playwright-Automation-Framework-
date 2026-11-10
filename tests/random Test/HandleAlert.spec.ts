@@ -39,7 +39,7 @@ test('handle Alert with Page.once', async ({page})=>{
 
 })
 
-test.only('handle Alert with Page.on', async ({page})=>{
+test('handle Alert with Page.on', async ({page})=>{
 
     
     page.on('dialog',alertType =>{
