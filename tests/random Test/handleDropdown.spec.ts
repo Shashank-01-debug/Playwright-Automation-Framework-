@@ -8,7 +8,7 @@ await page.selectOption("//select[@class='ui-selectonemenu']",{index:3});
 
 })
 //! only this testcase will be executed....
-test.only ('handle dropdown with Non Select tag', async ({page})=>{
+test('handle dropdown with Non Select tag', async ({page})=>{
 
     await page.goto("https://www.leafground.com/select.xhtml;");
     await page.locator("//label[text()='Select Country']").click();
