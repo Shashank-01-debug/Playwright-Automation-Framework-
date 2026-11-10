@@ -1,0 +1,13 @@
+{
+  "code-runner.executorMapByGlob": {
+    "*.{spec,test}.{ts,js}": "cd \"$workspaceRoot\" && npx playwright test \"$fileName\" --headed",
+    "*.{ts,js}": "node"
+  },
+  "code-runner.executorMap": {
+    "typescript": "node",
+    "javascript": "node"
+  },
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.clearPreviousOutput": true
+}

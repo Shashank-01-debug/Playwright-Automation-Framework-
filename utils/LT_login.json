@@ -1,0 +1,16 @@
+[
+
+    {
+        "TC_NO":"TC_001",
+        "username" : "democsr",
+        "password" : "crmsfa"
+
+    },
+    {
+          "TC_NO":"TC_002",
+        "username" : "democsr2",
+        "password" : "crmsfa"
+
+
+    }
+]
