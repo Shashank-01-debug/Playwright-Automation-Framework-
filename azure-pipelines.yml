@@ -1,0 +1,79 @@
+# Azure DevOps pipeline for the Playwright POM framework
+# Docs: https://learn.microsoft.com/azure/devops/pipelines/
+
+trigger:
+  branches:
+    include: [ main, master ]
+
+pr:
+  branches:
+    include: [ main, master ]
+
+# Optional nightly regression run (02:00 UTC)
+schedules:
+  - cron: '0 2 * * *'
+    displayName: Nightly regression
+    branches:
+      include: [ master ]
+    always: true
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  CI: 'true'                                   # Azure sets TF_BUILD, not CI — playwright.config.ts keys off CI
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
+jobs:
+  - job: PlaywrightTests
+    displayName: Run Playwright tests
+    timeoutInMinutes: 60
+    steps:
+      - checkout: self
+
+      - task: NodeTool@0
+        displayName: Use Node.js LTS
+        inputs:
+          versionSpec: '22.x'
+
+      - task: Cache@2
+        displayName: Cache npm
+        inputs:
+          key: 'npm | "$(Agent.OS)" | package-lock.json'
+          restoreKeys: |
+            npm | "$(Agent.OS)"
+          path: $(npm_config_cache)
+
+      - script: npm ci
+        displayName: Install dependencies
+
+      - script: npx playwright install --with-deps chromium msedge
+        displayName: Install Playwright browsers (Chromium + Edge)
+
+      - script: npx playwright test
+        displayName: Run Playwright tests
+
+      - task: PublishTestResults@2
+        displayName: Publish test results (Tests tab)
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFormat: JUnit
+          testResultsFiles: test-results/junit.xml
+          testRunTitle: Playwright - $(Build.SourceBranchName)
+          failTaskOnFailedTests: true
+
+      - task: PublishPipelineArtifact@1
+        displayName: Publish HTML report
+        condition: succeededOrFailed()
+        inputs:
+          targetPath: playwright-report
+          artifact: playwright-report-$(System.JobAttempt)
+          publishLocation: pipeline
+
+      - task: PublishPipelineArtifact@1
+        displayName: Publish traces / screenshots / videos
+        condition: failed()
+        inputs:
+          targetPath: test-results
+          artifact: test-results-$(System.JobAttempt)
+          publishLocation: pipeline
