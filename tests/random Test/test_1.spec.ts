@@ -2,7 +2,7 @@ import { test, expect, chromium } from '@playwright/test';
 
 test('Launch Browser', async() => {
 
-    const browser = await chromium.launch({ headless: false });
+    const browser = await chromium.launch({ headless: !!process.env.CI }); // headed locally, headless on CI (no display)
     //to open the window
 
     const context = await browser.newContext();
