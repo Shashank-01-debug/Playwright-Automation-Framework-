@@ -1,0 +1,9 @@
+ MCP - Model context protocol
+ Integrate VS code with copilot & MCP servers for playwright
+
+
+create MCP.json file
+prepare you ICE prompt file (Instruction, context and example) in .md or .txt file
+
+
+

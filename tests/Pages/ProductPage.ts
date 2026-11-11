@@ -2,6 +2,13 @@ import {LoginPage } from './LoginPage'
 
 export class ProductPage extends LoginPage{
 
+async selectProducts(productNames: string[]){
+    for (const productName of productNames){
+        const product = this.page.locator('.inventory_item').filter({hasText: productName});
+        await product.getByRole('button', {name: 'Add to cart'}).click();
+    }
+}
+
 async selectingProducts(){
 
     await this.page.locator("#add-to-cart-sauce-labs-bike-light").click();
@@ -10,7 +17,7 @@ async selectingProducts(){
 }
 
 async clickOnCart(){
-    await this.page.getByRole('button',{name:'Cart, 2 items'}).click();
+    await this.page.locator('.shopping_cart_link').click();
 }
 
 async clickOnLogout(){
