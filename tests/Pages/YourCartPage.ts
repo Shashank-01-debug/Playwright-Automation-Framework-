@@ -1,8 +1,8 @@
-import { ProductPage } from "./ProductPage";
+import { BasePage } from './BasePage';
 
-export class YourCartPage extends ProductPage{
+export class YourCartPage extends BasePage{
 
     async clickOnCheckOut(){
-        await this.page.getByRole("button",{name:'Checkout'}).click();
+        await this.click(this.page.getByRole("button",{name:'Checkout'}));
     }
 }
